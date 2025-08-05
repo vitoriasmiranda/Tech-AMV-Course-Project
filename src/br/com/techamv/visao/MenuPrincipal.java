@@ -16,11 +16,16 @@ public class MenuPrincipal {
     }
 
     public void exibir() {
-        System.out.println("\n===== BEM-VINDO AO SISTEMA TECHAMV =====");
-        
-        while(true) {
+        while (true) {
+            System.out.println("\n===== BEM-VINDO AO SISTEMA TECHAMV =====");
+            System.out.println("Faça o login para continuar ou digite 'sair' no email para fechar o sistema.");
             System.out.print("Email: ");
             String email = scanner.nextLine();
+
+            if (email.equalsIgnoreCase("sair")) {
+                break;
+            }
+
             System.out.print("Senha: ");
             String senha = scanner.nextLine();
 
@@ -30,11 +35,11 @@ public class MenuPrincipal {
                 Usuario usuario = usuarioAutenticado.get();
                 System.out.println("\nLogin bem-sucedido! Bem-vindo(a), " + usuario.getNome() + " (" + usuario.getTipo() + ")");
                 direcionarParaMenu(usuario);
-                break;
             } else {
-                System.out.println("Email ou senha inválidos. Tente novamente.");
+                System.out.println("Email, senha ou status do usuário inválidos. Tente novamente.");
             }
         }
+        System.out.println("Sistema finalizado.");
         scanner.close();
     }
 
