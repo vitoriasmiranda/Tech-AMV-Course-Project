@@ -8,7 +8,7 @@ public class AutenticacaoServico {
 
     public Optional<Usuario> fazerLogin(String email, String senha) {
         return BancoDeDados.usuarios.stream()
-                .filter(u -> u.getEmail().equalsIgnoreCase(email) && u.getSenha().equals(senha))
+                .filter(u -> u.getEmail().equalsIgnoreCase(email) && u.getSenha().equals(senha) && u.isAtivo())
                 .findFirst();
     }
 }
