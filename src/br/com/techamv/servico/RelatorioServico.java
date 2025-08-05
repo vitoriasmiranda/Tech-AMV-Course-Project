@@ -5,11 +5,14 @@ import br.com.techamv.modelo.Venda;
 import br.com.techamv.modelo.usuario.Vendedor;
 import br.com.techamv.repositorio.BancoDeDados;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RelatorioServico {
+
+    private final DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public void gerarRelatorioLucro() {
         double lucroTotal = BancoDeDados.vendas.stream().mapToDouble(Venda::getValorTotal).sum();
@@ -44,5 +47,31 @@ public class RelatorioServico {
                 .sum();
         
         System.out.printf("Total vendido hoje: R$ %.2f\n", totalVendidoHoje);
+    }
+
+    public void gerarAnaliseDeVendas() {
+        System.out.println("\n--- Análise de Histórico de Vendas ---");
+        if (BancoDeDados.vendas.isEmpty()) {
+            System.out.println("Nenhuma venda registrada no sistema.");
+            return;
+        }
+
+        BancoDeDados.vendas.forEach(venda -> {
+            System.out.println("-----------------------------------------");
+            System.out.println("Venda ID: " + venda.getIdVenda());
+            System.out.println("Data: " + venda.getData().format(formatador));
+            System.out.println("Vendedor: " + venda.getVendedor().getNome());
+            System.out.println("Cliente: " + (venda.getCliente() != null ? venda.getCliente().getNome() : "Não Identificado"));
+            System.out.println("Itens vendidos:");
+            venda.getItens().forEach(item -> {
+                System.out.printf("  - %s (%d un) - Subtotal: R$ %.2f\n",
+                    item.getProduto().getNome(),
+                    item.getQuantidade(),
+                    item.getSubtotal()
+                );
+            });
+            System.out.printf("VALOR TOTAL DA VENDA: R$ %.2f\n", venda.getValorTotal());
+        });
+        System.out.println("-----------------------------------------");
     }
 }
