@@ -8,12 +8,7 @@ public class Estoque {
     }
 
     public int getQuantidade() { return quantidade; }
-
-    public void adicionar(int valor) {
-        this.quantidade += valor;
-    }
-
-    public void remover(int valor) {
-        this.quantidade -= valor;
-    }
+    public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
+    public void adicionar(int valor) { this.quantidade += valor; }
+    public void remover(int valor) { this.quantidade -= valor; }
 }

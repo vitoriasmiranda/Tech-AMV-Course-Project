@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Venda {
-    private static int proximoId = 1;
     private int idVenda;
     private Vendedor vendedor;
     private Cliente cliente;
     private List<ItemVenda> itens;
     private double valorTotal;
     private LocalDateTime data;
+    private static int proximoId = 1;
 
     public Venda(Vendedor vendedor, Cliente cliente, List<ItemVenda> itens) {
         this.idVenda = proximoId++;
@@ -19,13 +19,9 @@ public class Venda {
         this.cliente = cliente;
         this.itens = itens;
         this.data = LocalDateTime.now();
-        this.valorTotal = calcularValorTotal();
+        this.valorTotal = this.itens.stream().mapToDouble(ItemVenda::getSubtotal).sum();
     }
 
-    private double calcularValorTotal() {
-        return this.itens.stream().mapToDouble(ItemVenda::getSubtotal).sum();
-    }
-    
     public int getIdVenda() { return idVenda; }
     public Vendedor getVendedor() { return vendedor; }
     public Cliente getCliente() { return cliente; }
