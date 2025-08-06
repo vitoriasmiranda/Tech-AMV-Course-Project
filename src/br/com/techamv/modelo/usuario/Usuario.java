@@ -21,12 +21,9 @@ public abstract class Usuario {
     public String getEmail() { return email; }
     public String getSenha() { return senha; }
     public boolean isAtivo() { return ativo; }
-    
     public void setNome(String nome) { this.nome = nome; }
-    
     public void setEmail(String email) { this.email = email; }
-    
     public void setAtivo(boolean ativo) { this.ativo = ativo; }
-
+    
     public abstract String getTipo();
 }
