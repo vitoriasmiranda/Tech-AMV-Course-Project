@@ -48,8 +48,6 @@ public class SistemaTechAMV {
         scanner.close();
     }
 
-    // MÉTODOS DE LÓGICA E CONTROLE
-
     private static Optional<Usuario> autenticarUsuario(String email, String senha) {
         return usuarios.stream()
                 .filter(u -> u.getEmail().equalsIgnoreCase(email) && u.getSenha().equals(senha) && u.isAtivo())
@@ -65,8 +63,6 @@ public class SistemaTechAMV {
             exibirMenuEstoquista((Estoquista) usuario);
         }
     }
-
-    // MENUS
 
     private static void exibirMenuGerente(Gerente gerente) {
         int opcao = 0;
@@ -133,8 +129,6 @@ public class SistemaTechAMV {
         }
     }
 
-    // SUBMENUS
-
     private static void menuGestaoUsuarios() {
         int opcao = 0;
         while (opcao != 9) {
@@ -192,8 +186,6 @@ public class SistemaTechAMV {
             }
         }
     }
-
-    // FUNCIONALIDADES VENDEDOR
 
     private static void registrarVenda(Vendedor vendedor) {
         System.out.println("\n--- REGISTRO DE VENDA ---");
@@ -257,8 +249,6 @@ public class SistemaTechAMV {
         produtos.forEach(p -> System.out.printf("ID %d - %s | Preço: R$ %.2f | Qtd: %d\n", p.getIdProduto(), p.getNome(), p.getPreco(), p.getEstoque().getQuantidade()));
     }
 
-    // FUNCIONALIDADES ESTOQUISTA
-
     private static void registrarEntradaEstoque(Estoquista estoquista) {
         System.out.println("\n--- REGISTRAR ENTRADA DE MERCADORIA ---");
         consultarEstoque();
@@ -315,9 +305,6 @@ public class SistemaTechAMV {
             System.out.println("Quantidade inválida.");
         }
     }
-
-
-    // FUNCIONALIDADES GERENTE
 
     private static void listarUsuarios() {
         System.out.println("\n--- USUÁRIOS DO SISTEMA ---");
@@ -387,9 +374,6 @@ public class SistemaTechAMV {
         }
     }
 
-
-    // CADASTROS E LISTAGENS GERAIS
-
     private static void cadastrarCliente() {
         System.out.println("\n--- CADASTRAR NOVO CLIENTE ---");
         System.out.print("Nome completo: ");
@@ -427,9 +411,6 @@ public class SistemaTechAMV {
         }
         fornecedores.forEach(f -> System.out.printf("ID %d | Nome: %s | CNPJ: %s\n", f.getIdFornecedor(), f.getNome(), f.getCnpj()));
     }
-
-
-    // RELATÓRIOS
 
     private static void gerarRelatorioDesempenhoVendedor(Vendedor vendedor) {
         System.out.println("\n--- DESEMPENHO DE VENDAS (HOJE) ---");
@@ -492,9 +473,6 @@ public class SistemaTechAMV {
         });
     }
 
-
-    // MÉTODOS AUXILIARES
-
     private static int lerOpcao() {
         try {
             return Integer.parseInt(scanner.nextLine());
@@ -504,27 +482,22 @@ public class SistemaTechAMV {
     }
 
     private static void inicializarDados() {
-        // Categorias
         Categoria catSmart = new Categoria("Smartphones");
         Categoria catNote = new Categoria("Notebooks");
         Categoria catAcc = new Categoria("Acessórios");
 
-        // Produtos
         produtos.add(new Produto(1, "Galaxy S25", 7999.90, catSmart, 10, 20));
         produtos.add(new Produto(2, "Phone 16", 8500.50, catSmart, 10, 15));
         produtos.add(new Produto(3, "Dell G15", 5500.00, catNote, 5, 8));
         produtos.add(new Produto(4, "Mouse sem fio", 150.00, catAcc, 20, 50));
 
-        // Usuários
         usuarios.add(new Gerente("Arthur Ramiro", "g", "1"));
         usuarios.add(new Vendedor("Melissa Emely", "v", "1"));
         usuarios.add(new Estoquista("Vitória de Souza", "e", "1"));
 
-        // Clientes
         clientes.add(new Cliente("João da Silva", "111.222.333-44"));
         clientes.add(new Cliente("Maria Oliveira", "555.666.777-88"));
 
-        // Fornecedores
         fornecedores.add(new Fornecedor("Eletrônicos Brasil S/A", "12.345.678/0001-99"));
         fornecedores.add(new Fornecedor("Importados Tech Ltda", "98.765.432/0001-11"));
     }

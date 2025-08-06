@@ -1,4 +1,3 @@
-// src/br/com/techamv/modelo/usuario/Usuario.java
 package br.com.techamv.modelo.usuario;
 
 public abstract class Usuario {
@@ -25,7 +24,6 @@ public abstract class Usuario {
     
     public void setNome(String nome) { this.nome = nome; }
     
-    // MÉTODO ADICIONADO PARA CORRIGIR O ERRO
     public void setEmail(String email) { this.email = email; }
     
     public void setAtivo(boolean ativo) { this.ativo = ativo; }
