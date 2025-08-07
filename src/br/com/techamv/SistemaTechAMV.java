@@ -205,11 +205,21 @@ public class SistemaTechAMV {
                 continue;
             }
             Produto produto = produtoOpt.get();
+            
+            int quantidadeJaNoCarrinho = itens.stream()
+                .filter(item -> item.getProduto().equals(produto))
+                .mapToInt(ItemVenda::getQuantidade)
+                .sum();
+
+            int estoqueDisponivelParaVenda = produto.getEstoque().getQuantidade() - quantidadeJaNoCarrinho;
+
+            System.out.printf("Disponível para esta venda: %d\n", estoqueDisponivelParaVenda);
             System.out.print("Quantidade: ");
             int qtd = lerOpcao();
+            
             if (qtd <= 0) {
                 System.out.println("Quantidade inválida.");
-            } else if (produto.getEstoque().getQuantidade() < qtd) {
+            } else if (estoqueDisponivelParaVenda < qtd) { // A verificação agora usa o estoque disponível calculado
                 System.out.println("Venda bloqueada: estoque insuficiente.");
             } else {
                 itens.add(new ItemVenda(produto, qtd));
