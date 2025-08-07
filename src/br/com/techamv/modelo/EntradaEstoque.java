@@ -1,7 +1,6 @@
 package br.com.techamv.modelo;
 
 import br.com.techamv.modelo.usuario.Estoquista;
-
 import java.time.LocalDateTime;
 
 public class EntradaEstoque {
@@ -22,27 +21,10 @@ public class EntradaEstoque {
         this.data = LocalDateTime.now();
     }
 
-    public int getIdEntrada() {
-        return idEntrada;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public Estoquista getEstoquista() {
-        return estoquista;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public LocalDateTime getData() {
-        return data;
-    }
+    public int getIdEntrada() { return idEntrada; }
+    public Produto getProduto() { return produto; }
+    public Fornecedor getFornecedor() { return fornecedor; }
+    public Estoquista getEstoquista() { return estoquista; }
+    public int getQuantidade() { return quantidade; }
+    public LocalDateTime getData() { return data; }
 }
