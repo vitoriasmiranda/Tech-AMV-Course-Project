@@ -19,7 +19,15 @@ public class Venda {
         this.cliente = cliente;
         this.itens = itens;
         this.data = LocalDateTime.now();
-        this.valorTotal = this.itens.stream().mapToDouble(ItemVenda::getSubtotal).sum();
+        this.valorTotal = calcularValorTotal();
+    }
+    
+    private double calcularValorTotal() {
+        double total = 0.0;
+        for (ItemVenda item : this.itens) {
+            total += item.getSubtotal();
+        }
+        return total;
     }
 
     public int getIdVenda() { return idVenda; }

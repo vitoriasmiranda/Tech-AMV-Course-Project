@@ -12,23 +12,9 @@ public class Fornecedor {
         this.cnpj = cnpj;
     }
 
-    public int getIdFornecedor() {
-        return idFornecedor;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
+    public int getIdFornecedor() { return idFornecedor; }
+    public String getNome() { return nome; }
+    public String getCnpj() { return cnpj; }
+    public void setNome(String nome) { this.nome = nome; }
+    public void setCnpj(String cnpj) { this.cnpj = cnpj; }
 }
